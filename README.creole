@@ -1,0 +1,95 @@
+= Conference Room Information
+
+{{screenshot.jpg|Screenshot}}
+
+= Description
+
+Displays information about the next talk, talks in other rooms and generic room information.
+Scheduling information is imported from a https://frab.cccv.de/ export.
+
+= Configuration
+
+== Logo (logo)
+
+Sets a logo. Size should be 280x100 pixel. Otherwise the image will be scaled to that size which 
+might lead to a reduced quality.
+
+== Other room display (other_rooms)
+
+How long to show information about talks in other rooms (in seconds)
+
+== Current room (current_room)
+
+How long to show information about the (upcoming) talk in the current room.
+Default is 15 seconds.
+
+The current talk is displayed for the first 25 minutes of that talk. So in
+case of a delayed start the screen will stil show useful information.
+
+After 25 minutes into the talk this screen will show information about the
+next talk.
+
+== Room info (room_info)
+
+Shows information about the current room (irc channel, recommended hashtag).
+
+== Schedule URL (schedule_url) 
+
+Url where the running devices should fetch the schedule from. The schedule
+is expected to be in the frabs export format. This format looks something
+like this:
+
+{{{
+<schedule>
+    <conference>
+        <title>EuroPython 2014</title>
+        <acronym>EP2014</acronym>
+        <start>2014-07-21</start>
+        <end>2014-07-27</end>
+        <days>7</days>
+        <timeslot_duration>00:15</timeslot_duration>
+    </conference>
+    <day date="2014-07-21" index="1">
+        <room name="C01">
+        <event id="118">
+    ...
+</schedule>
+}}}
+
+== Rooms (rooms)
+
+Here you can defined your rooms. You can use the same Setup for multiple
+rooms. 
+
+==== Room name (name)
+
+Sets the room name. This name must match the room name in the Schedule.
+
+=== Short Room name (name_short)
+
+Sets the display name of the room. You can set a shorter name for a room 
+since space on the display is limited.
+
+=== Device Serial (serial)
+
+Enter the serial number of the device that is responsible for showing
+room information here.
+
+=== Dect (dect)
+
+Information about what number to dial to live audio feed.
+
+=== Translation (translation)
+
+Information about what number to dial to a live audio translation.
+
+=== Hashtag (hashtag)
+
+Information about the hashtag recommended for discussing the content
+of the current room.
+
+=== IRC (irc)
+
+Information about the recommended IRC channel to talk about the content
+of the current room.
+

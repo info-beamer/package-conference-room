@@ -1,0 +1,157 @@
+{
+    "name": "Room Preview",
+    "permissions": {
+        "network": "Has to fetch schedule from remote site"
+    },
+    "options": [{
+        "title": "Appearance",
+        "type": "section"
+    }, {
+        "title": "Background color",
+        "ui_width": 4,
+        "name": "background_color",
+        "type": "color",
+        "default": [0,0,0,1]
+    }, {
+        "title": "Foreground color",
+        "ui_width": 4,
+        "name": "foreground_color",
+        "type": "color",
+        "default": [1,1,1,1]
+    }, {
+        "title": "Font",
+        "ui_width": 4,
+        "name": "font",
+        "type": "font",
+        "default": "silkscreen.ttf"
+    }, {
+        "title": "Background",
+        "ui_width": 4,
+        "name": "background",
+        "type": "resource",
+        "valid": ["image", "video", "child"],
+        "default": "empty.png"
+    }, {
+        "title": "Logo",
+        "ui_width": 4,
+        "name": "logo",
+        "doc_link": true,
+        "type": "resource",
+        "valid": ["image", "video", "child"],
+        "default": "empty.png"
+    },
+
+    {
+        "title": "Clock",
+        "type": "section"
+    }, {
+        "title": "Time Zone",
+        "ui_width": 4,
+        "name": "timezone",
+        "type": "select",
+        "hint": "The timezone",
+        "options": [
+            ["UTC", "UTC"],
+            ["Europe/Berlin", "Europa / Berlin"]
+        ],
+        "default": "UTC"
+    },  
+
+    {
+        "title": "Slides",
+        "type": "section"
+    }, {
+        "title": "Other Rooms (seconds)",
+        "ui_width": 4,
+        "name": "other_rooms",
+        "doc_link": true,
+        "type": "duration",
+        "hint": "How long to display other room information",
+        "default": 25
+    }, {
+        "title": "Current Rooms (seconds)",
+        "ui_width": 4,
+        "name": "current_room",
+        "doc_link": true,
+        "type": "duration",
+        "hint": "How long to display current talk information",
+        "default": 15
+    }, {
+        "title": "Room info (seconds)",
+        "ui_width": 4,
+        "name": "room_info",
+        "doc_link": true,
+        "type": "duration",
+        "hint": "How long to display room information",
+        "default": 10
+    },  
+
+    {
+        "title": "Scheduling",
+        "type": "section"
+    }, {
+        "title": "XML Fahrplan Url",
+        "ui_width": 10,
+        "name": "schedule_url",
+        "doc_link": true,
+        "type": "string",
+        "default": "http://localhost/"
+    }, {
+        "title": "Rooms",
+        "name": "rooms",
+        "doc_link": true,
+        "type": "list",
+        "itemname": "Room",
+        "hint": "Room definitions",
+        "items": [{
+            "title": "Room Name",
+            "ui_width": 4,
+            "name": "name",
+            "doc_link": true,
+            "type": "string",
+            "default": ""
+        }, {
+            "title": "Room Short Name",
+            "ui_width": 4,
+            "name": "name_short",
+            "doc_link": true,
+            "type": "string",
+            "default": ""
+        }, {
+            "title": "Device Serial",
+            "ui_width": 4,
+            "name": "serial",
+            "doc_link": true,
+            "type": "string",
+            "default": ""
+        }, {
+            "title": "Dect",
+            "ui_width": 3,
+            "name": "dect",
+            "doc_link": true,
+            "type": "string",
+            "default": ""
+        }, {
+            "title": "Translation",
+            "ui_width": 3,
+            "name": "translation",
+            "doc_link": true,
+            "type": "string",
+            "default": ""
+        }, {
+            "title": "Hashtag",
+            "ui_width": 3,
+            "name": "hashtag",
+            "doc_link": true,
+            "type": "string",
+            "default": ""
+        }, {
+            "title": "IRC",
+            "ui_width": 3,
+            "name": "irc",
+            "doc_link": true,
+            "type": "string",
+            "default": ""
+        }]
+    }]
+}
