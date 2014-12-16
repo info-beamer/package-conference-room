@@ -59,6 +59,8 @@ local resource_types = {
         function image.draw(...)
             image.ensure_loaded():draw(...)
         end
+        function image.dispose()
+        end
         function image.unload()
             if surface then
                 surface:dispose()
@@ -95,6 +97,8 @@ local resource_types = {
         function video.draw(...)
             video.ensure_loaded():draw(...)
         end
+        function video.dispose()
+        end
         function video.unload()
             if surface then
                 surface:dispose()
@@ -104,22 +108,33 @@ local resource_types = {
         return video
     end;
     ["child"] = function(value)
+        local surface
         local child = {
             asset_name = value.asset_name,
             filename = value.filename,
             type = value.type,
         }
         function child.ensure_loaded()
-            return resource.render_child(value.asset_name)
+            if surface then
+                surface:dispose()
+            end
+            surface = resource.render_child(value.asset_name)
+            return surface
         end
         function child.load()
             return true
         end
         function child.get_surface()
-            return resource.render_child(value.asset_name)
+            return child.ensure_loaded()
         end
         function child.draw(...)
-            resource.render_child(value.asset_name):draw(...)
+            child.ensure_loaded():draw(...)
+        end
+        function child.dispose()
+            if surface then
+                surface:dispose()
+                surface = nil
+            end
         end
         function child.unload()
         end
