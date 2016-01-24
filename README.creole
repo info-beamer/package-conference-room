@@ -1,6 +1,6 @@
 = Conference Room Information
 
-{{screenshot.jpg|Screenshot}}
+{{example.jpg|Screenshot}}
 
 = Description
 
