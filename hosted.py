@@ -8,12 +8,12 @@
 # met:
 #
 #     Redistributions of source code must retain the above copyright
-#     notice, this list of conditions and the following disclaimer. 
+#     notice, this list of conditions and the following disclaimer.
 #
 #     Redistributions in binary form must reproduce the above copyright
 #     notice, this list of conditions and the following disclaimer in the
 #     documentation and/or other materials provided with the
-#     distribution.  
+#     distribution.
 #
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
 # IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
@@ -45,6 +45,10 @@ def color(value):
 
 @type
 def string(value):
+    return value
+
+@type
+def text(value):
     return value
 
 @type
@@ -156,8 +160,8 @@ print >>sys.stderr, "initialized hosted.py"
 CONFIG = Configuration
 
 class Node(object):
-    def __init__(self):
-        self._node = os.environ['NODE']
+    def __init__(self, node):
+        self._node = node
         self._sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
     def send_raw(self, raw):
@@ -181,7 +185,7 @@ class Node(object):
 
     def __call__(self, data):
         return self.Sender(self, self._node)(data)
-NODE = Node()
+NODE = Node(os.environ['NODE'])
 
 class Upstream(object):
     def __init__(self):

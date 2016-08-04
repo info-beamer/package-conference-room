@@ -1,6 +1,6 @@
 -- Part of info-beamer hosted
 --
--- Copyright (c) 2014, Florian Wesch <fw@dividuum.de>
+-- Copyright (c) 2014,2015, Florian Wesch <fw@dividuum.de>
 -- All rights reserved.
 --
 -- Redistribution and use in source and binary forms, with or without
@@ -43,23 +43,15 @@ local resource_types = {
             return surface
         end
         function image.load()
-            if surface then
-                local state = surface:state()
-                return state ~= "loading"
-            else
-                surface = resource.load_image_async(value.asset_name)
-                return false
-                -- surface = resource.load_image(value.asset_name)
-                -- return true
-            end
+            image.ensure_loaded()
+            local state = surface:state()
+            return state ~= "loading"
         end
         function image.get_surface()
             return image.ensure_loaded()
         end
         function image.draw(...)
             image.ensure_loaded():draw(...)
-        end
-        function image.dispose()
         end
         function image.unload()
             if surface then
@@ -83,21 +75,15 @@ local resource_types = {
             return surface
         end
         function video.load(opt)
-            if surface then
-                local state = surface:state()
-                return state ~= "loading"
-            else
-                surface = util.videoplayer(value.asset_name, opt)
-                return false
-            end
+            video.ensure_loaded()
+            local state = surface:state()
+            return state ~= "loading"
         end
         function video.get_surface()
             return video.ensure_loaded()
         end
         function video.draw(...)
             video.ensure_loaded():draw(...)
-        end
-        function video.dispose()
         end
         function video.unload()
             if surface then
@@ -130,19 +116,23 @@ local resource_types = {
         function child.draw(...)
             child.ensure_loaded():draw(...)
         end
-        function child.dispose()
+        function child.unload()
             if surface then
                 surface:dispose()
                 surface = nil
             end
         end
-        function child.unload()
-        end
         return child
+    end;
+    ["json"] = function(value)
+        return require("json").decode(value)
     end;
 }
 
 local types = {
+    ["text"] = function(value)
+        return value
+    end;
     ["string"] = function(value)
         return value
     end;
@@ -156,6 +146,9 @@ local types = {
         return value
     end;
     ["duration"] = function(value)
+        return value
+    end;
+    ["custom"] = function(value)
         return value
     end;
     ["color"] = function(value)
