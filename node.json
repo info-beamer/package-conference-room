@@ -52,6 +52,7 @@
         "hint": "The timezone",
         "options": [
             ["UTC", "UTC"],
+            ["Europe/London", "Europa / London"],
             ["Europe/Berlin", "Europa / Berlin"]
         ],
         "default": "UTC"
