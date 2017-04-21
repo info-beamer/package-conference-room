@@ -5,10 +5,10 @@ import time
 import pytz
 import json
 from calendar import timegm
-from datetime import timedelta, datetime
+from datetime import datetime
 from operator import itemgetter
 
-from hosted import CONFIG, NODE, UPSTREAM
+from hosted import CONFIG, NODE
 import importer
 
 CONFIG.restart_on_update()

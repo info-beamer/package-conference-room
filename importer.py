@@ -34,7 +34,7 @@ def get_schedule(url):
 
         parsed_events = []
         for event in all_events():
-            start = dateutil.parser.parse(event.find('date').text)
+            start = dateutil.parser.parse(event.find('date').text).replace(tzinfo=pytz.tz)
             duration = parse_duration(event.find('duration').text)
             end = start + duration
 
@@ -43,7 +43,6 @@ def get_schedule(url):
                 persons = persons.findall('person')
 
             parsed_events.append(dict(
-                start = start.astimezone(pytz.utc),
                 start_str = start.strftime('%H:%M'),
                 end_str = end.strftime('%H:%M'),
                 start_unix  = to_unixtimestamp(start),
