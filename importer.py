@@ -34,7 +34,7 @@ def get_schedule(url):
 
         parsed_events = []
         for event in all_events():
-            start = dateutil.parser.parse(event.find('date').text).replace(tzinfo=pytz.tz)
+            start = dateutil.parser.parse(event.find('date').text).replace(tzinfo=pytz.utc)
             duration = parse_duration(event.find('duration').text)
             end = start + duration
 
