@@ -8,7 +8,7 @@ from datetime import timedelta
 import dateutil.parser
 import defusedxml.ElementTree as ET
 
-def get_schedule(url):
+def get_schedule(url, schedule_tz):
     def load_events(xml):
         def to_unixtimestamp(dt):
             dt = dt.astimezone(pytz.utc)
@@ -34,7 +34,7 @@ def get_schedule(url):
 
         parsed_events = []
         for event in all_events():
-            start = dateutil.parser.parse(event.find('date').text).replace(tzinfo=pytz.utc)
+            start = dateutil.parser.parse(event.find('date').text).replace(tzinfo=schedule_tz)
             duration = parse_duration(event.find('duration').text)
             end = start + duration
 

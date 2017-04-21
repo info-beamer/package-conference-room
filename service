@@ -40,7 +40,10 @@ def main():
             time.sleep(1)
             continue
 
-        has_events, events = importer.get_schedule(CONFIG['schedule_url'])
+        has_events, events = importer.get_schedule(
+            CONFIG['schedule_url'],
+            pytz.timezone(CONFIG['timezone']),
+        )
 
         if not has_events:
             print >>sys.stderr, "no events" 
