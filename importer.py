@@ -34,7 +34,14 @@ def get_schedule(url, schedule_tz):
 
         parsed_events = []
         for event in all_events():
-            start = schedule_tz.localize(dateutil.parser.parse(event.find('date').text))
+            event_time = dateutil.parser.parse(event.find('date').text)
+            if event_time.tzinfo is None:
+                # Assume the provided timezone for naive dates
+                start = schedule_tz.localize()
+            else:
+                # Otherwise convert to provided timezone
+                start = event_time.astimezone(schedule_tz)
+
             duration = parse_duration(event.find('duration').text)
             end = start + duration
 
