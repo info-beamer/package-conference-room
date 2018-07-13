@@ -93,3 +93,10 @@ of the current room.
 Information about the recommended IRC channel to talk about the content
 of the current room.
 
+== Transitioning to other packages
+
+This package is obsolete now as this package didn't really integrate into any
+other packages. The Schedule Player package offers a better option to show
+frab conference data and you can freely mix it with other content. Have a look at:
+
+https://info-beamer.com/pkg/4765
